@@ -17,7 +17,7 @@ namespace Coding_Tracker
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 using (SQLiteCommand command = connection.CreateCommand())
-                { 
+                {
                     connection.Open();
                     command.CommandText = @"CREATE TABLE IF NOT EXISTS CodingTable (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Date TEXT NOT NULL, Time TEXT NOT NULL)";
                     command.ExecuteNonQuery();

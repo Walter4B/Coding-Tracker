@@ -8,5 +8,11 @@ namespace Coding_Tracker
 {
     internal class UserInput
     {
+
+        internal void function()
+        {
+            CodingController codingController = new CodingController();
+        }
+
     }
 }
