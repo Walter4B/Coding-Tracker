@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Configuration;
+using System.Collections.Specialized;
+using ConsoleTableExt;
 
 namespace Coding_Tracker
 {
@@ -33,9 +35,15 @@ namespace Coding_Tracker
                 using (SQLiteCommand command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = $"SELECT * FROM CodingTable";
+                    string CommandText = $"SELECT * FROM CodingTable";
+                    command.CommandText = CommandText;
                     using (SQLiteDataReader sqlDataReader = command.ExecuteReader())
                     {
+                        ConsoleTableBuilder
+                            .From(database.db)
+                            
+
+
                         while (sqlDataReader.Read())
                         {
                             Console.WriteLine($"{sqlDataReader.GetInt32(0)} - {sqlDataReader.GetString(1)} - {sqlDataReader.GetString(2)}");

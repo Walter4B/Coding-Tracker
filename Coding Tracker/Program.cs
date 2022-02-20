@@ -1,5 +1,7 @@
 ﻿using System.Data.SQLite;
 using System.Globalization;
+using System.Configuration;
+using System.Collections.Specialized;
 using Coding_Tracker;
 
 class CodingTracker
