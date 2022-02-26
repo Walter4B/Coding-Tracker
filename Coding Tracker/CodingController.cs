@@ -39,9 +39,9 @@ namespace Coding_Tracker
                     command.CommandText = CommandText;
                     using (SQLiteDataReader sqlDataReader = command.ExecuteReader())
                     {
-                        ConsoleTableBuilder
-                            .From(database.db)
-                            
+                        //ConsoleTableBuilder
+                        //.From(database.db)
+                        //"SELECT column1, column2 FROM table1, table2 WHERE column2 = 'value';"
 
 
                         while (sqlDataReader.Read())
@@ -81,6 +81,5 @@ namespace Coding_Tracker
                 }
             }
         }
-
     }
 }
