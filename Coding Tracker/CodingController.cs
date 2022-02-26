@@ -81,5 +81,13 @@ namespace Coding_Tracker
                 }
             }
         }
+
+        internal void NewSession()
+        {
+            CodingSession session = new CodingSession();
+            session.Id = 1; //make dinamic
+            session.StartTime = DateTime.Now.ToString("h:mm:ss tt"); //add date && later user choice
+            Console.WriteLine(session.StartTime);
+        }
     }
 }
