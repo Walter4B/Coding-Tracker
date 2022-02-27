@@ -54,7 +54,7 @@ namespace Coding_Tracker
             }
         }
 
-        internal static void DeleteRecord(int id)
+        internal void DeleteRecord(int id)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
