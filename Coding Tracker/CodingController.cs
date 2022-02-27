@@ -54,7 +54,7 @@ namespace Coding_Tracker
             }
         }
 
-        internal void DeleteRecord(int id)
+        internal static void DeleteRecord(int id)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -85,7 +85,6 @@ namespace Coding_Tracker
         internal void NewSession()
         {
             CodingSession session = new CodingSession();
-            session.Id = 1; //make dinamic
             session.StartTime = DateTime.Now;
             //session.StartTime = DateTime.Now.ToString("h:mm:ss tt"); //add date && later user choice
             Console.WriteLine(session.StartTime);
@@ -102,5 +101,48 @@ namespace Coding_Tracker
             TimeSpan runTime = endTime.Subtract(startTime);
             return runTime;
         }
+
+        internal void SwitchCommandPrompt()
+        {
+            Console.WriteLine
+                ("\n       MAIN MENU       \n\n" +
+                "What would you like to do?\n" +
+                "Type 0 to Close Application.\n" +
+                "Type 1 to View All Records.\n" +
+                "Type 2 to Start New Session.\n" +
+                "Type 3 to Delete Record.\n");
+
+            string userInput = Console.ReadLine();
+            int commandNumber;
+
+            if (int.TryParse(userInput, out commandNumber))
+            {
+                switch (commandNumber)
+                {
+                    case 0:
+                        Environment.Exit(0);
+                        break;
+                    case 1:
+                        ReadRecords();
+                        break;
+                    case 2:
+                        NewSession();
+                        break;
+                    case 3:
+                        DeleteRecord(Convert.ToInt32(Console.ReadLine()));
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input");
+                        SwitchCommandPrompt();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input");
+                SwitchCommandPrompt();
+            }
+        }
+
     }
 }
