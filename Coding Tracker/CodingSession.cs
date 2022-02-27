@@ -11,22 +11,22 @@ namespace Coding_Tracker
 			set { id = value; }
 		}
 
-		private string startTime;
-		public string StartTime
+		private DateTime startTime;
+		public DateTime StartTime
 		{
 			get { return startTime; }
 			set { startTime = value; }
 		}
 
-		private string endTime;
-		public string EndTime
+		private DateTime endTime;
+		public DateTime EndTime
 		{
 			get { return endTime; }
 			set { endTime = value; }
 		}
 
-		private string duration;
-		public string Duration
+		private TimeSpan duration;
+		public TimeSpan Duration
 		{
 			get { return duration; }
 			set { duration = value; }

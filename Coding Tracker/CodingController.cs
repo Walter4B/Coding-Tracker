@@ -86,8 +86,21 @@ namespace Coding_Tracker
         {
             CodingSession session = new CodingSession();
             session.Id = 1; //make dinamic
-            session.StartTime = DateTime.Now.ToString("h:mm:ss tt"); //add date && later user choice
+            session.StartTime = DateTime.Now;
+            //session.StartTime = DateTime.Now.ToString("h:mm:ss tt"); //add date && later user choice
             Console.WriteLine(session.StartTime);
+            Console.WriteLine("If you wish to end the session please write 'end'");
+            while (Console.ReadLine() != "end"){ }
+            session.EndTime = DateTime.Now;
+            Console.WriteLine(session.EndTime);
+            Console.WriteLine(CalculateSessionDuration(session.StartTime, session.EndTime));
+
+        }
+
+        internal TimeSpan CalculateSessionDuration(DateTime startTime, DateTime endTime)
+        {
+            TimeSpan runTime = endTime.Subtract(startTime);
+            return runTime;
         }
     }
 }
