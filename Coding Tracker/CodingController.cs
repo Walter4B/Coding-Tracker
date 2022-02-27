@@ -21,7 +21,7 @@ namespace Coding_Tracker
                 using (SQLiteCommand command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = @"CREATE TABLE IF NOT EXISTS CodingTable (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Date TEXT NOT NULL, Time TEXT NOT NULL)";
+                    command.CommandText = @"CREATE TABLE IF NOT EXISTS CodingTable (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, StartTime TEXT NOT NULL, EndTime TEXT NOT NULL, RunTime TEXT NOT NULL)";
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
@@ -46,7 +46,7 @@ namespace Coding_Tracker
 
                         while (sqlDataReader.Read())
                         {
-                            Console.WriteLine($"{sqlDataReader.GetInt32(0)} - {sqlDataReader.GetString(1)} - {sqlDataReader.GetString(2)}");
+                            Console.WriteLine($"{sqlDataReader.GetInt32(0)} - {sqlDataReader.GetString(1)} - {sqlDataReader.GetString(2)} - {sqlDataReader.GetString(3)}");
                         }
                     }
                     connection.Close();
@@ -68,14 +68,14 @@ namespace Coding_Tracker
             }
         }
 
-        internal void InsertRecordTesting(int x, int y)
+        internal void InsertRecord(string startTime, string endTime, string runTime)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 using (SQLiteCommand command = connection.CreateCommand())
                 {
                     connection.Open();
-                    command.CommandText = $"INSERT INTO CodingTable (Date, Time) VALUES('{x}','{y}');";
+                    command.CommandText = $"INSERT INTO CodingTable (StartTime, EndTime, RunTime) VALUES('{startTime}','{endTime}','{runTime}');";
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
@@ -94,7 +94,7 @@ namespace Coding_Tracker
             session.EndTime = DateTime.Now;
             Console.WriteLine(session.EndTime);
             Console.WriteLine(CalculateSessionDuration(session.StartTime, session.EndTime));
-
+            InsertRecord(session.StartTime.ToString(), session.EndTime.ToString(), CalculateSessionDuration(session.StartTime, session.EndTime).ToString());
         }
 
         internal TimeSpan CalculateSessionDuration(DateTime startTime, DateTime endTime)

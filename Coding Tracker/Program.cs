@@ -9,9 +9,8 @@ class CodingTracker
     public static void Main()
     {
         Coding_Tracker.CodingController codingController = new CodingController();
-        codingController.NewSession();
         codingController.CreateTable();
-        codingController.InsertRecordTesting(1, 20);
+        codingController.NewSession();
         codingController.ReadRecords();
         Console.ReadLine();
 
