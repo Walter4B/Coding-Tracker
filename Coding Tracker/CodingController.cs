@@ -129,6 +129,7 @@ namespace Coding_Tracker
                         NewSession();
                         break;
                     case 3:
+                        Console.WriteLine("Chose ID of entry you want to delete");
                         DeleteRecord(Convert.ToInt32(Console.ReadLine()));
                         break;
                     default:
@@ -142,6 +143,7 @@ namespace Coding_Tracker
                 Console.WriteLine("Invalid input");
                 SwitchCommandPrompt();
             }
+            SwitchCommandPrompt();
         }
 
     }

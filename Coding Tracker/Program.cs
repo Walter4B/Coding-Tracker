@@ -9,11 +9,7 @@ class CodingTracker
     public static void Main()
     {
         Coding_Tracker.CodingController codingController = new CodingController();
-        codingController.CreateTable();
-        codingController.NewSession();
-        codingController.ReadRecords();
-        Console.ReadLine();
-
+        codingController.SwitchCommandPrompt();
     }
 
 }
