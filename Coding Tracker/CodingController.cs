@@ -12,76 +12,7 @@ namespace Coding_Tracker
 {
     internal class CodingController
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["connectionKey"].ConnectionString;
-
-        internal void CreateTable()
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                using (SQLiteCommand command = connection.CreateCommand())
-                {
-                    connection.Open();
-                    command.CommandText = @"CREATE TABLE IF NOT EXISTS CodingTable (ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, StartTime TEXT NOT NULL, EndTime TEXT NOT NULL, RunTime TEXT NOT NULL)";
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                }
-            }
-        }
-
-        internal void ReadRecords()
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                using (SQLiteCommand command = connection.CreateCommand())
-                {
-                    connection.Open();
-                    string CommandText = $"SELECT * FROM CodingTable";
-                    command.CommandText = CommandText;
-                    using (SQLiteDataReader sqlDataReader = command.ExecuteReader())
-                    {
-                        //ConsoleTableBuilder
-                        //.From(database.db)
-                        //"SELECT column1, column2 FROM table1, table2 WHERE column2 = 'value';"
-
-
-                        while (sqlDataReader.Read())
-                        {
-                            Console.WriteLine($"{sqlDataReader.GetInt32(0)} - {sqlDataReader.GetString(1)} - {sqlDataReader.GetString(2)} - {sqlDataReader.GetString(3)}");
-                        }
-                    }
-                    connection.Close();
-                }
-            }
-        }
-
-        internal void DeleteRecord(int id)
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                using (SQLiteCommand command = connection.CreateCommand())
-                {
-                    connection.Open();
-                    command.CommandText = $"DELETE FROM CodingTable WHERE ID = '{id}';";
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                }
-            }
-        }
-
-        internal void InsertRecord(string startTime, string endTime, string runTime)
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                using (SQLiteCommand command = connection.CreateCommand())
-                {
-                    connection.Open();
-                    command.CommandText = $"INSERT INTO CodingTable (StartTime, EndTime, RunTime) VALUES('{startTime}','{endTime}','{runTime}');";
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                }
-            }
-        }
-
+        Coding_Tracker.SqlController sqlController = new SqlController();
         internal void NewSession()
         {
             CodingSession session = new CodingSession();
@@ -93,7 +24,7 @@ namespace Coding_Tracker
             session.EndTime = DateTime.Now;
             Console.WriteLine(session.EndTime);
             Console.WriteLine(CalculateSessionDuration(session.StartTime, session.EndTime));
-            InsertRecord(session.StartTime.ToString(), session.EndTime.ToString(), CalculateSessionDuration(session.StartTime, session.EndTime).ToString());
+            sqlController.InsertRecord(session.StartTime.ToString(), session.EndTime.ToString(), CalculateSessionDuration(session.StartTime, session.EndTime).ToString());
         }
 
         internal TimeSpan CalculateSessionDuration(DateTime startTime, DateTime endTime)
@@ -123,14 +54,14 @@ namespace Coding_Tracker
                         Environment.Exit(0);
                         break;
                     case 1:
-                        ReadRecords();
+                        sqlController.ReadRecords();
                         break;
                     case 2:
                         NewSession();
                         break;
                     case 3:
                         Console.WriteLine("Chose ID of entry you want to delete");
-                        DeleteRecord(Convert.ToInt32(Console.ReadLine()));
+                        sqlController.DeleteRecord(Convert.ToInt32(Console.ReadLine()));
                         break;
                     default:
                         Console.WriteLine("Invalid input");
