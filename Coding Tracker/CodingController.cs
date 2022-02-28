@@ -42,6 +42,7 @@ namespace Coding_Tracker
                 "Type 1 to View All Records.\n" +
                 "Type 2 to Start New Session.\n" +
                 "Type 3 to Delete Record.\n");
+            //Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["Key0"]);
 
             string userInput = Console.ReadLine();
             int commandNumber;
