@@ -40,8 +40,9 @@ namespace Coding_Tracker
                     {
                         while (sqlDataReader.Read())
                         {
-                            tableVisualisationEngine.DisplayTable(sqlDataReader.GetInt32(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2), sqlDataReader.GetString(3));
+                            tableVisualisationEngine.AddLine(sqlDataReader.GetInt32(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2), sqlDataReader.GetString(3));
                         }
+                        tableVisualisationEngine.DisplayTable();
                     }
                     connection.Close();
                 }

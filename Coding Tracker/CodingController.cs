@@ -13,17 +13,17 @@ namespace Coding_Tracker
     internal class CodingController
     {
         Coding_Tracker.SqlController sqlController = new SqlController();
+        Coding_Tracker.UserInput userInputIntake = new UserInput();
+
         internal void NewSession()
         {
             CodingSession session = new CodingSession();
             session.StartTime = DateTime.Now;
-            //session.StartTime = DateTime.Now.ToString("h:mm:ss tt"); //add date && later user choice
-            Console.WriteLine(session.StartTime);
+            Console.WriteLine("session started at: " + session.StartTime);
             Console.WriteLine("If you wish to end the session please write 'end'");
-            while (Console.ReadLine() != "end"){ }
+            while (userInputIntake.GetUserInputString() != "end"){ }
             session.EndTime = DateTime.Now;
-            Console.WriteLine(session.EndTime);
-            Console.WriteLine(CalculateSessionDuration(session.StartTime, session.EndTime));
+            Console.WriteLine("Session ended at: " + session.EndTime);
             sqlController.InsertRecord(session.StartTime.ToString(), session.EndTime.ToString(), CalculateSessionDuration(session.StartTime, session.EndTime).ToString());
         }
 
@@ -44,7 +44,7 @@ namespace Coding_Tracker
                 "Type 3 to Delete Record.\n");
             //Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["Key0"]);
 
-            string userInput = Console.ReadLine();
+            string userInput = userInputIntake.GetUserInputString();
             int commandNumber;
 
             if (int.TryParse(userInput, out commandNumber))
@@ -62,7 +62,7 @@ namespace Coding_Tracker
                         break;
                     case 3:
                         Console.WriteLine("Chose ID of entry you want to delete");
-                        sqlController.DeleteRecord(Convert.ToInt32(Console.ReadLine()));
+                        sqlController.DeleteRecord(userInputIntake.GetUserInputInt());
                         break;
                     default:
                         Console.WriteLine("Invalid input");
