@@ -38,11 +38,13 @@ namespace Coding_Tracker
                     command.CommandText = CommandText;
                     using (SQLiteDataReader sqlDataReader = command.ExecuteReader())
                     {
+                        var tableData = new List<List<object>> { };
+
                         while (sqlDataReader.Read())
                         {
-                            tableVisualisationEngine.AddLine(sqlDataReader.GetInt32(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2), sqlDataReader.GetString(3));
+                            tableData.Add(new List<object> { sqlDataReader.GetInt32(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2), sqlDataReader.GetString(3) });
                         }
-                        tableVisualisationEngine.DisplayTable();
+                        tableVisualisationEngine.DisplayTable(tableData);
                     }
                     connection.Close();
                 }

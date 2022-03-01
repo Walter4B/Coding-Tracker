@@ -31,6 +31,6 @@ namespace Coding_Tracker
 			get { return duration; }
 			set { duration = value; }
 		}
-}
+	}
 
 }
