@@ -18,11 +18,11 @@ namespace Coding_Tracker
 
         internal void DisplayTable()
         {
-            ConsoleTableBuilder
+            //ConsoleTableBuilder
                     //.From(tableDataLine)
-                    .WithColumn("ID", "Start Time", "End Time", "Session Time")
-                    .WithFormat(ConsoleTableBuilderFormat.Minimal)
-                    .ExportAndWriteLine();
+                    //.WithColumn("ID", "Start Time", "End Time", "Session Time")
+                    //.WithFormat(ConsoleTableBuilderFormat.Minimal)
+                    //.ExportAndWriteLine();
         }
     }
 }
