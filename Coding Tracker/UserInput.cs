@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Coding_Tracker
+﻿namespace Coding_Tracker
 {
     internal class UserInput
     {
         Coding_Tracker.Validation Validatior = new Validation();
+        Coding_Tracker.StringOutputClass stringOutputClass = new StringOutputClass();
 
         internal int GetUserInputInt()
         {
             string userInput = Console.ReadLine();
             while (!Validatior.ValidateIntInput(userInput))
             {
-                Console.WriteLine("Please insert a valid input");
+                stringOutputClass.OutputString("InvalidInput");
                 userInput = Console.ReadLine();
             }
             int userInputInt = Convert.ToInt32(userInput);
@@ -32,7 +27,7 @@ namespace Coding_Tracker
             string userInputDateTime = Console.ReadLine();
             while (!Validatior.ValidateDateTimeInput(userInputDateTime))
             {
-                Console.WriteLine("Please use valid format (dd/mm/yyyy hh:mm:ss)");
+                stringOutputClass.OutputString("InvalidDateInput");
                 userInputDateTime = Console.ReadLine();
             }
             return userInputDateTime;
