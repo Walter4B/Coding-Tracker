@@ -17,12 +17,14 @@ namespace Coding_Tracker
                 return false;
         }
 
-        internal bool ValidateInput(string userInput)
+        internal bool ValidateDateTimeInput(string userInput)
         {
-            if (true)
+            if (DateTime.TryParse(userInput, out _))
                 return true;
             else
                 return false;
         }
+
+
     }
 }

@@ -7,6 +7,7 @@ using System.Data.SQLite;
 using System.Configuration;
 using System.Collections.Specialized;
 using ConsoleTableExt;
+using System.Globalization;
 
 namespace Coding_Tracker
 {
@@ -44,7 +45,8 @@ namespace Coding_Tracker
                 "Type 0 to Close Application.\n" +
                 "Type 1 to View All Records.\n" +
                 "Type 2 to Start New Session.\n" +
-                "Type 3 to Delete Record.\n");
+                "Type 3 to Delete Record.\n" +
+                "Type 4 to Update Record.\n");
             //Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["Key0"]);
 
             string userInput = userInputIntake.GetUserInputString();
@@ -72,11 +74,30 @@ namespace Coding_Tracker
                         Console.WriteLine("Chose ID of entry you want to delete");
                         sqlController.DeleteRecord(userInputIntake.GetUserInputInt());
                         break;
+                    case 4:
+                        UpdateSession();
+                        break;
                     default:
                         Console.WriteLine("Invalid input");
                         break;
                 }
             }
+        }
+
+        internal void UpdateSession()
+        {
+            CodingSession session = new CodingSession();
+            Console.WriteLine("Chose ID of entry you want to update");
+            int updateId = userInputIntake.GetUserInputInt();
+            Console.WriteLine("Input start date and time. Please use format (dd/mm/yyyy hh:mm:ss)");
+            string startDateTime = userInputIntake.GetUserInputDateTime();
+            Console.WriteLine("Input end date and time. Please use format (dd/mm/yyyy hh:mm:ss)");
+            string endDateTime = userInputIntake.GetUserInputDateTime();
+            var cultureInfo = new CultureInfo("de-DE");
+            session.StartTime = DateTime.Parse(startDateTime );
+            session.EndTime = DateTime.Parse(endDateTime);
+
+            sqlController.UpdateRecordSQL(updateId, startDateTime, endDateTime, CalculateSessionDuration(session.StartTime, session.EndTime).ToString());
         }
 
     }

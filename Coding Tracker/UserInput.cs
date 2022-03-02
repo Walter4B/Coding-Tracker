@@ -27,7 +27,16 @@ namespace Coding_Tracker
             return Console.ReadLine();
         }
 
-
+        internal string GetUserInputDateTime()
+        { 
+            string userInputDateTime = Console.ReadLine();
+            while (!Validatior.ValidateDateTimeInput(userInputDateTime))
+            {
+                Console.WriteLine("Please use valid format (dd/mm/yyyy hh:mm:ss)");
+                userInputDateTime = Console.ReadLine();
+            }
+            return userInputDateTime;
+        }
 
 
     }

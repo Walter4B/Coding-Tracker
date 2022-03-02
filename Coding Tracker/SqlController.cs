@@ -78,5 +78,20 @@ namespace Coding_Tracker
                 }
             }
         }
+
+        internal void UpdateRecordSQL(int id, string startDateTime, string endDateTime, string duration)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                using (SQLiteCommand command = connection.CreateCommand())
+                {
+                    connection.Open();
+                    command.CommandText = $"UPDATE CodingTable SET StartTime ='{startDateTime}', EndTime ='{endDateTime}', RunTime ='{duration}' WHERE ID = '{id}'";
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+
     }
 }
