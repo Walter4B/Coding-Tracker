@@ -35,6 +35,9 @@ namespace Coding_Tracker
 
         internal void SwitchCommandPrompt()
         {
+            bool programRunning = true;
+            while (programRunning)
+            {
             Console.WriteLine
                 ("\n       MAIN MENU       \n\n" +
                 "What would you like to do?\n" +
@@ -45,14 +48,19 @@ namespace Coding_Tracker
             //Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["Key0"]);
 
             string userInput = userInputIntake.GetUserInputString();
-            int commandNumber;
+            
+            if(string.IsNullOrEmpty(userInput) || !int.TryParse(userInput, out _))
+                {
+                    Console.WriteLine("Invalid input");
+                    continue;
+                }
 
-            if (int.TryParse(userInput, out commandNumber))
-            {
+            int commandNumber = Convert.ToInt32(userInput);
+
                 switch (commandNumber)
                 {
                     case 0:
-                        Environment.Exit(0);
+                        programRunning = false; 
                         break;
                     case 1:
                         sqlController.ReadRecords();
@@ -66,16 +74,9 @@ namespace Coding_Tracker
                         break;
                     default:
                         Console.WriteLine("Invalid input");
-                        SwitchCommandPrompt();
                         break;
                 }
             }
-            else
-            {
-                Console.WriteLine("Invalid input");
-                SwitchCommandPrompt();
-            }
-            SwitchCommandPrompt();
         }
 
     }
