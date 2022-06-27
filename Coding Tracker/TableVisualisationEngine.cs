@@ -8,7 +8,6 @@ namespace Coding_Tracker
         {
             ConsoleTableBuilder
                     .From(ListOfTableLines)
-                    .WithColumn("ID", "StartTime", "EndTime", "SessionTime")
                     .WithFormat(ConsoleTableBuilderFormat.Alternative)
                     .ExportAndWriteLine();
         }
