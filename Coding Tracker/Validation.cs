@@ -4,8 +4,7 @@
     {
         internal bool ValidateIntInput(string userInput)
         {
-            int validUserInput;
-            if (int.TryParse(userInput, out validUserInput))
+            if (int.TryParse(userInput, out _))
                 return true;
             else
                 return false;
