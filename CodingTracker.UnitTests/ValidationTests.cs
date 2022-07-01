@@ -5,6 +5,8 @@ namespace CodingTracker.UnitTests
     [TestClass]
     public class ValidationTests
     {
+        //ValidateIntInput
+
         [TestMethod]
         public void ValidateIntInput_InputIsInt_ReturnsTrue()
         {
@@ -32,6 +34,8 @@ namespace CodingTracker.UnitTests
 
         }
 
+        //ValidateDateTimeInput
+        
         [TestMethod]
         public void ValidateDateTimeInput_InputIsDateTime_ReturnsTrue()
         {
