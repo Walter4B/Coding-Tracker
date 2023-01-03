@@ -25,16 +25,17 @@ Application is meant for keeping track of pushups done every day
 
 - CRUD db functions 
   - In the main menu user can create, read, update and delete entries
-  - Date and time is taken on session start and sesion end
+  - Date and time is taken on session start and session end
   - ![CRUD](Images/Input.PNG)
-  - When the sasion is ended duration is calculated and all the data is added to the database
+  - When the session is ended duration is calculated and all the data is added to the database
   - ![CRUD](Images/Input2.PNG)
 
 - Reporting is done with IDs so user can use the app as intended
   - ![CRUD](Images/Report.PNG)
+  - "ConsoleTableExt" library was used for table display
 
 - This project was also used to learn [unit testing](https://github.com/Walter4B/Coding-Tracker/tree/master/CodingTracker.UnitTests) 
-Reporting is done 
+
 ## Tech stack:
 - Sqlite database 
 - Sqlite data reader
