@@ -5,7 +5,7 @@ Second console application in a series for learning .net.
 Application is meant for keeping track of pushups done every day
 
 ## Requirements: 
- - [x] This application has the same requirements as the [previous project] (https://github.com/Walter4B/Habit-Tracker), except that now you'll be logging your daily coding time.
+ - [x] This application has the same requirements as the [previous project](https://github.com/Walter4B/Habit-Tracker), except that now you'll be logging your daily coding time.
  - [x] To show the data on the console, you should use the "ConsoleTableExt" library.
  - [x] You're required to have separate classes in different files (ex. UserInput.cs, Validation.cs, CodingController.cs)
  - [x] You should tell the user the specific format you want the date and time to be logged and not allow any other format.
@@ -26,7 +26,7 @@ Application is meant for keeping track of pushups done every day
 - CRUD db functions 
   - In the main menu user can create, read, update and delete entries
   - Date and time is taken on session start and sesion end
-  - ![CRUD](Images/Input2.PNG)
+  - ![CRUD](Images/Input.PNG)
   - When the sasion is ended duration is calculated and all the data is added to the database
   - ![CRUD](Images/Input2.PNG)
 
